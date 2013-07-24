@@ -1,0 +1,9 @@
+parameters:
+    amnl_router_unslash.listener.class: AMNL\RouterUnslashBundle\EventListener\RouterListener
+
+services:
+    amnl_router_unslash.listener:
+      class: %amnl_router_unslash.listener.class%
+      arguments: ["@router", %amnl_router_unslash.permanent%, %amnl_router_unslash.public%, %amnl_router_unslash.maxage%, %amnl_router_unslash.smaxage%]
+      tags:
+        - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
